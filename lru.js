@@ -63,10 +63,14 @@ class LRU {
     }
 
     removeLRUEntry() {
-
+        let tailItem = this.popTail();
+        this.cache[tailItem.key] = null; 
+        this.size--;
     }
 
     popTail() {
-        
+        let tailItem = this.tail.prev;
+        this.removeFromList(tailItem);
+        return tailItem;
     }
 }

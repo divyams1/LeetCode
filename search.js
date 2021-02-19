@@ -40,3 +40,55 @@ const search = (matrix, target) => {
   return false;
 }
 
+// merge Sort Linked List
+
+const mergeSort = (head) => {
+  if (head == null || head.next == null) {
+    return head; 
+  }
+  
+  const mid = getMiddle(head);
+  const left = mergeSort(head);
+  const right = mergeSort(mid);
+  
+  return merge(left, right);
+}
+
+const merge = (left, right) => {
+  const dummy = new ListNode(0);
+  let endOfList = dummy; 
+  
+  while ( left !== null && right !== null ) {
+    if ( left.val < right.val ) {
+      endOfList.next = left;
+      left = left.next; 
+    } else {
+      endOfList.next = right;
+      right = right.next; 
+    }
+    endOfList = endOfList.next;
+  }
+  if ( left !== null ) {
+    endOfList.next = left; 
+  } 
+  if ( right !== null ) {
+    endOfList.next = right;
+  }
+  
+  return dummy.next;
+} 
+
+const getMiddle = (head) => {
+  let prev = null; 
+  let slow = head; 
+  let fast = head; 
+  
+  while ( fast !== null && fast.next != null ) {
+    prev = slow; 
+    fast = fast.next.next; 
+    slow = slow.next; 
+  }
+  
+  prev.next = null; 
+  return slow;
+}
