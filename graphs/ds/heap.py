@@ -25,11 +25,10 @@ class MaxHeap:
         self.heapify( len(self.heap)-1)
 
     def getMax(self):
-        return heap[0]
+        return self.heap[0]
 
     def heapify(self, i):
         while (self.hasParent(i)) and self.heap[i] > self.heap[self.getParent(i)]:
             self.heap[i], self.heap[self.getParent(i)] = self.heap[self.getParent(i)], self.heap[i]
             i = self.getParent(i)
 
-    
